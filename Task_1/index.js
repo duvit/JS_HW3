@@ -7,8 +7,7 @@ function Emploee(employee) {
     (this.salary = employee.salary),
     (this.workExperience = employee.workExperience),
     (this.isPrivileges = employee.isPrivileges),
-    (this.gender = employee.gender),
-    (this.employeeFullInfo = this.employee);
+    (this.gender = employee.gender)
 }
 
 // const employeeObj = new Emploee(emplyeeArr[1]);
