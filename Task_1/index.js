@@ -7,7 +7,8 @@ function Emploee(employee) {
     (this.salary = employee.salary),
     (this.workExperience = employee.workExperience),
     (this.isPrivileges = employee.isPrivileges),
-    (this.gender = employee.gender);
+    (this.gender = employee.gender),
+    (this.employeeFullInfo = this.employee);
 }
 
 // const employeeObj = new Emploee(emplyeeArr[1]);
@@ -74,36 +75,29 @@ getRandomEmployee(emplyeeConstructArr);
 //7
 //Создать дескриптор со свойством fullInfo который будет записывать все свойства переданные ему в экземпляр от которого он вызывается. И выдавать все свойства, если к нему обратиться, в виде строки <Название свойства> - <значение> через запятую.
 
-function Emploee(employee) {
-  (this.id = employee.id),
-    (this.name = employee.name),
-    (this.surname = employee.surname),
-    (this.salary = employee.salary),
-    (this.workExperience = employee.workExperience),
-    (this.isPrivileges = employee.isPrivileges),
-    (this.gender = employee.gender);
-  Object.defineProperties(this, {
-    fullInfo: {
-      get: function () {
-        let fullinfo = "";
-        for (const key in employee) {
-          fullinfo += `${key} - ${this[key]}, `;
-        }
-        return fullinfo;
-      },
+Object.defineProperties(Emploee.prototype, {
+  fullInfo: {
+    get: function () {
+      let fullinfo = "";
 
-      set: function (value) {
-        for (const key in value) {
-          if (this.hasOwnProperty(key)) {
-            this[key] = value[key];
-          }
-        }
-      },
+      for (const key in this) {
+        fullinfo += `${key} - ${this[key]}, `;
+      }
+      return fullinfo;
     },
-  });
-}
 
-
+    set: function (value) {
+      for (const key in value) {
+        if (this.hasOwnProperty(key)) {
+          this[key] = value[key];
+        }
+      }
+    },
+  },
+  getFullName: {
+    enumerable: false,
+  },
+});
 
 const employeeObj = new Emploee(emplyeeArr[0]);
 
